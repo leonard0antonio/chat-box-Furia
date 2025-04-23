@@ -2,11 +2,237 @@
   {
     "name": "yuurih",
     "role": "rifler",
-    "since": 2018,
+    "since": 2017,
     "bio": "Conhecido pela agressividade e mira precisa.",
-    "trophies": ["MVP da IEM Rio 2023"],
+    "trophies": [],
     "gear": { "sens": "1.7", "dpi": 800 },
-    "hltv": "https://hltv.org/player/..."
+    "hltv": "https://www.hltv.org/player/13915/yuurih"
+  },
+  {
+    "name": "KSCERATO",
+    "role": "rifler",
+    "since": 2018,
+    "bio": "Destaca-se pela consistência e clutch plays.",
+    "trophies": [],
+    "gear": { "sens": "2.0", "dpi": 400 },
+    "hltv": "https://www.hltv.org/player/15631/kscerato"
+  },
+  {
+    "name": "FalleN",
+    "role": "AWPer",
+    "since": 2023,
+    "bio": "Veterano e líder tático da equipe.",
+    "trophies": [],
+    "gear": { "sens": "2.2", "dpi": 400 },
+    "hltv": "https://www.hltv.org/player/2023/fallen"
+  },
+  {
+    "name": "molodoy",
+    "role": "rifler",
+    "since": 2025,
+    "bio": "Novo talento com grande potencial.",
+    "trophies": [],
+    "gear": { "sens": "2.0", "dpi": 800 },
+    "hltv": "https://www.hltv.org/player/20323/molodoy"
+  },
+
+  {
+    "name": "YEKINDAR",
+    "role": "stand-in",
+    "since": 2025,
+    "bio": "Jogador letão atuando como substituto.",
+    "trophies": [],
+    "gear": { "sens": "1.8", "dpi": 400 },
+    "hltv": "https://www.hltv.org/player/16555/yekindar"
   }
-]
+
+
+
+
+
+  ,
+  {
+    "name": "Guigo",
+    "role": "top",
+    "since": 2025,
+    "bio": "Experiente no topo, traz estabilidade à equipe.",
+    "trophies": [],
+    "gear": {},
+    "hltv": null
+  },
+  {
+    "name": "Tatu",
+    "role": "jungler",
+    "since": 2025,
+    "bio": "Jovem talento emprestado da paiN Academy.",
+    "trophies": [],
+    "gear": {},
+    "hltv": null
+  },
+  {
+    "name": "Tutsz",
+    "role": "mid",
+    "since": 2023,
+    "bio": "Mid laner com grande controle de rota.",
+    "trophies": [],
+    "gear": {},
+    "hltv": null
+  },
+  {
+    "name": "Ayu",
+    "role": "adc",
+    "since": 2023,
+    "bio": "Atirador com mecânicas afiadas.",
+    "trophies": [],
+    "gear": {},
+    "hltv": null
+  },
+  {
+    "name": "JoJo",
+    "role": "support",
+    "since": 2024,
+    "bio": "Suporte com excelente visão de jogo.",
+    "trophies": [],
+    "gear": {},
+    "hltv": null
+  },
+  
+
+
+
+
+    {
+      "name": "heat",
+      "role": "duelista",
+      "since": 2024,
+      "bio": "Especialista em entradas agressivas.",
+      "trophies": [],
+      "gear": {},
+      "hltv": null
+    },
+    {
+      "name": "raafa",
+      "role": "sentinela",
+      "since": 2024,
+      "bio": "Responsável pelo controle de áreas e suporte.",
+      "trophies": [],
+      "gear": {},
+      "hltv": null
+    },
+    {
+      "name": "pryze",
+      "role": "iniciador",
+      "since": 2025,
+      "bio": "Recém-chegado com foco em iniciações estratégicas.",
+      "trophies": [],
+      "gear": {},
+      "hltv": null
+    },
+    {
+      "name": "havoc",
+      "role": "controlador",
+      "since": 2023,
+      "bio": "Controla o ritmo do jogo com utilitários precisos.",
+      "trophies": [],
+      "gear": {},
+      "hltv": null
+    },
+    {
+      "name": "khalil",
+      "role": "flex",
+      "since": 2021,
+      "bio": "Versátil, adapta-se a diversas funções conforme necessário.",
+      "trophies": [],
+      "gear": {},
+      "hltv": null
+    },
+
+  
+
+
+  
+    
+      {
+        "name": "drufinho",
+        "role": "jogador",
+        "since": 2022,
+        "bio": "Jogador habilidoso com bom controle de bola.",
+        "trophies": [],
+        "gear": {},
+        "profile": "https://liquipedia.net/rocketleague/Drufinho"
+      },
+      {
+        "name": "caard",
+        "role": "jogador",
+        "since": 2022,
+        "bio": "Conhecido por suas jogadas aéreas.",
+        "trophies": [],
+        "gear": {},
+        "profile": "https://liquipedia.net/rocketleague/Caard"
+      },
+      {
+        "name": "lostt",
+        "role": "jogador",
+        "since": 2022,
+        "bio": "Especialista em posicionamento e passes.",
+        "trophies": [],
+        "gear": {},
+        "profile": "https://liquipedia.net/rocketleague/Lostt"
+      },
+
+
+
+
+
+      
+        {
+          "name": "R4re",
+          "role": "suporte",
+          "since": 2020,
+          "bio": "Suporte confiável com excelente comunicação.",
+          "trophies": [],
+          "gear": {},
+          "profile": "https://liquipedia.net/rainbowsix/R4re"
+        },
+        {
+          "name": "Miracle",
+          "role": "entry fragger",
+          "since": 2020,
+          "bio": "Especialista em aberturas agressivas.",
+          "trophies": [],
+          "gear": {},
+          "profile": "https://liquipedia.net/rainbowsix/Miracle"
+        },
+        {
+          "name": "Fntzy",
+          "role": "flex",
+          "since": 2020,
+          "bio": "Jogador adaptável a diversas funções.",
+          "trophies": [],
+          "gear": {},
+          "profile": "https://liquipedia.net/rainbowsix/Fntzy"
+        },
+        {
+          "name": "Lenon",
+          "role": "IGL",
+          "since": 2020,
+          "bio": "Líder tático com grande experiência.",
+          "trophies": [],
+          "gear": {},
+          "profile": "https://liquipedia.net/rainbowsix/Lenon"
+        },
+        {
+          "name": "Handyy",
+          "role": "suporte",
+          "since": 2020,
+          "bio": "Suporte sólido com boa leitura de jogo.",
+          "trophies": [],
+          "gear": {},
+          "profile": "https://liquipedia.net/rainbowsix/Handyy"
+        }
+      ]
+      
+
+    
+
 

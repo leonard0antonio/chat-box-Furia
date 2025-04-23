@@ -1,6 +1,14 @@
-{
-  "opponent": "NAVI",
-  "date": "27/04/2025",
-  "time": "20:00",
-  "link": "https://twitch.tv/eslcs"
-}
+[
+  {
+    "opponent": "FURIA",
+    "date": "26/04/2025",
+    "time": "19:00",
+    "link": "https://twitch.tv/eslcs"
+  },
+  {
+    "opponent": "NAVI",
+    "date": "27/04/2025",
+    "time": "20:00",
+    "link": "https://twitch.tv/eslcs"
+  }
+]

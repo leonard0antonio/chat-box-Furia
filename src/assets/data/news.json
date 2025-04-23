@@ -1,5 +1,20 @@
 [
-  { "title": "Chelo fala sobre a preparação pro próximo Major" },
-  { "title": "Nova lineup da FURIA Academy anunciada" },
-  { "title": "FURIA confirma bootcamp em São Paulo antes da Blast" }
+  {
+    "title": "Chelo fala sobre a preparação pro próximo Major",
+    "date": "2025-04-21",
+    "description": "Em entrevista, Chelo comenta sobre o foco e estratégias da FURIA para o próximo Major de CS2.",
+    "link": "https://furia.gg/noticias/chelo-preparacao-major"
+  },
+  {
+    "title": "Nova lineup da FURIA Academy anunciada",
+    "date": "2025-04-18",
+    "description": "FURIA revela os novos talentos que integrarão o time Academy de CS2 em 2025.",
+    "link": "https://furia.gg/noticias/furia-academy-2025"
+  },
+  {
+    "title": "FURIA confirma bootcamp em São Paulo antes da Blast",
+    "date": "2025-04-15",
+    "description": "A organização confirmou que realizará um bootcamp intensivo visando a Blast Premier.",
+    "link": "https://furia.gg/noticias/bootcamp-blast-2025"
+  }
 ]

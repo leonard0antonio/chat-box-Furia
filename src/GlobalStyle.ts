@@ -1,42 +1,42 @@
-// src/styles/GlobalStyle.ts
+// src/styles/global.ts
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   /* Reset */
-  * {
+  *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  /* Corpo da página */
-  body {
-    font-family: 'Inter', 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+  html, body {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f0f0;
+    color: #222;
     line-height: 1.6;
-    padding: 20px;
-
-    @media (max-width: 768px) {
-      padding: 10px;
-    }
   }
 
-  /* Container principal */
   #root {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
+    padding: 1rem;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
     @media (max-width: 768px) {
-      padding: 15px;
+      padding: 0.75rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0.5rem;
     }
   }
 
-  /* Links */
   a {
     text-decoration: none;
     color: inherit;
@@ -46,12 +46,11 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  /* Botões */
   button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -61,36 +60,32 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  /* Cabeçalhos */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Helvetica', sans-serif;
-    color: #222;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
   }
 
-  /* Listas */
   ul, ol {
-    padding-left: 20px;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   li {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
 
-  /* Navbar */
   nav {
     background-color: #333;
     color: white;
-    padding: 10px;
+    padding: 0.75rem;
     border-radius: 8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
 
     a {
       color: white;
-      margin: 0 10px;
 
       &:hover {
         color: #f4f4f4;
@@ -100,7 +95,6 @@ export const GlobalStyle = createGlobalStyle`
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: center;
-      padding: 15px;
     }
   }
 `;
