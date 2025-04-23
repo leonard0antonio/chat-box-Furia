@@ -1,11 +1,13 @@
-
+// src/App.tsx
+import React from "react";
 import Home from "./pages/Home";
+import { AppContainer } from "./App.styles";
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <AppContainer>
       <Home />
-    </div>
+    </AppContainer>
   );
 }
 
