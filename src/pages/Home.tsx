@@ -1,4 +1,4 @@
-// src/pages/Home.tsx
+
 import React from "react";
 import ChatBot from "../components/ChatBot";
 import furiaLogo from "../assets/logo.gif";

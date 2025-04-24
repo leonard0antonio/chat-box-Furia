@@ -50,7 +50,7 @@ const ChatBot: React.FC = () => {
   const getBotResponse = (msg: string): string => {
     const lowerMsg = msg.toLowerCase();
 
-    // Resposta para notícias
+  
     if (
       lowerMsg.includes("novidade") ||
       lowerMsg.includes("notícia") ||
@@ -66,13 +66,13 @@ const ChatBot: React.FC = () => {
       lowerMsg.includes("rola") ||
       lowerMsg.includes("tá rolando") ||
       lowerMsg.includes("ta rolando") ||
-      lowerMsg.includes("denovida") || // erro de digitação incluído
+      lowerMsg.includes("denovida") || 
       lowerMsg.includes("de novidade")
     ) {
       return news.map((n) => `📰 ${n.title}`).join("\n");
     }
 
-    // Resposta para partidas
+  
     if (
       lowerMsg.includes("jogo") ||
       lowerMsg.includes("jogos") ||
@@ -88,20 +88,20 @@ const ChatBot: React.FC = () => {
       lowerMsg.includes("agenda") ||
       lowerMsg.includes("data do jogo") ||
       lowerMsg.includes("horário do jogo") ||
-      lowerMsg.includes("jga") || // erro comum de digitação
-      lowerMsg.includes("jg")    // abreviação
+      lowerMsg.includes("jga") || 
+      lowerMsg.includes("jg")    
     ) {
       if (match.length === 0) return "🎮 Nenhuma partida agendada no momento.";
 
       return match
         .map(
           (m, i) =>
-            `${i + 1}. ${m.opponent} - ${m.date} às ${m.time}\n🔗 Detalhes: ${m.link}`
+            `${i + 1}. ${m.opponent} - ${m.date} às ${m.time}\n🔗 Detalhes: ${m.link}` 
         )
         .join("\n\n");
     }
 
-    // Resposta para jogadores
+   // Resposta para jogadores
     if (
       lowerMsg.includes("jogador") ||
       lowerMsg.includes("jogadores") ||
@@ -117,6 +117,7 @@ const ChatBot: React.FC = () => {
       return "🤔 Você pode perguntar sobre jogadores específicos, como *arT*, *KSCERATO*, *yuurih* e outros.";
     }
 
+    // Resposta para jogadores específicos
     const player = players.find((p) => msg.includes(p.name.toLowerCase()));
 
     if (player) {
@@ -147,10 +148,22 @@ const ChatBot: React.FC = () => {
     if (lowerMsg.includes("loja") || lowerMsg.includes("camisa") || lowerMsg.includes("merch")) {
       return `🛍️ Nova Jersey FURIA 2025 já disponível!\n👉 https://furia.gg/loja`;
     }
+   
+    //fallback
+    if (lowerMsg.includes("oi") || lowerMsg.includes("olá") || lowerMsg.includes("e aí") || lowerMsg.includes("fala")) {
+      return "👋 Olá! Como posso ajudar você hoje?";
+    }
+    if (lowerMsg.includes("tchau") || lowerMsg.includes("até logo") || lowerMsg.includes("adeus")) {
+      return "👋 Até mais! Volte sempre!";
+    }
+    if (lowerMsg.includes("obrigado") || lowerMsg.includes("valeu") || lowerMsg.includes("agradeço")) {
+      return "🙏 De nada! Estou aqui para ajudar! Se precisar de mais alguma coisa, é só chamar.";
+    }
 
+    // Resposta padrão para perguntas não reconhecidas
     return "😅 Ainda não entendi essa... Tenta perguntar sobre notícias, jogadores, loja ou próximo jogo.";
   };
-
+    // Função para verificar se a mensagem é uma lista
   const isListMessage = (text: string): boolean => {
     const knownPrefixes = ["📰", "🎮", "🏆", "1️⃣", "2️⃣", "3️⃣", "4️⃣"];
     const lines = text.split("\n").filter(Boolean);
@@ -158,7 +171,7 @@ const ChatBot: React.FC = () => {
       knownPrefixes.some((prefix) => line.trim().startsWith(prefix))
     );
   };
-
+    // Renderização do componente
   return (
     <div className="max-w-md mx-auto p-4 bg-zinc-900 text-white rounded-2xl shadow-lg h-[600px] flex flex-col">
       <div className="flex-1 overflow-y-auto space-y-2 mb-4 px-2">
@@ -182,7 +195,7 @@ const ChatBot: React.FC = () => {
         ))}
         {isLoading && <div className="p-2 text-center text-gray-400">🤖 Pensando...</div>}
       </div>
-
+          
       <div className="flex gap-2">
         <input
           type="text"

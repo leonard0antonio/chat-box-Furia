@@ -44,13 +44,13 @@
     "trophies": [],
     "gear": { "sens": "1.8", "dpi": 400 },
     "hltv": "https://www.hltv.org/player/16555/yekindar"
-  }
+  },
 
 
 
 
 
-  ,
+  
   {
     "name": "Guigo",
     "role": "top",
@@ -101,7 +101,7 @@
 
 
 
-    {
+  {
       "name": "heat",
       "role": "duelista",
       "since": 2024,

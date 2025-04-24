@@ -1,4 +1,3 @@
-// src/App.tsx
 
 import Home from "./pages/Home";
 import { AppContainer } from "./App.styles";
