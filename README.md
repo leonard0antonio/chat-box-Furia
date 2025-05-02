@@ -1,3 +1,87 @@
+# 🧠 Chat-Box FURIA
+
+![Chatbot FURIA](https://drive.google.com/uc?id=1m-JFUgSGYwNe35_7gmb4_kvCzxZVV59l)
+
+Este é um chatbot temático sobre o time brasileiro de CS:GO **FURIA Esports**, desenvolvido com o objetivo de simular interações com os fãs do time e oferecer informações sobre jogadores, partidas e curiosidades. É um projeto educacional com foco em React e estrutura de menus interativos.
+
+---
+
+## 📌 Funcionalidades
+
+- 🤖 Chatbot com respostas baseadas em palavras-chave  
+- 🧩 Múltiplos menus temáticos (jogadores, curiosidades, partidas etc.)  
+- 💬 Respostas personalizadas com base no conteúdo do JSON  
+- 🖼 Interface amigável desenvolvida em **React**  
+- 🌐 Simula diálogos interativos com torcedores da FURIA  
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+- React  
+- HTML5 & CSS3  
+- JavaScript (ES6)  
+- JSON para armazenamento local dos dados  
+- Git e GitHub para controle de versão  
+
+---
+
+## 🚀 Como Executar o Projeto
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/leonard0antonio/chat-box-Furia.git
+Instale as dependências
+
+bash
+Copiar
+Editar
+npm install
+Rode o projeto
+
+bash
+Copiar
+Editar
+npm start
+O projeto será iniciado em http://localhost:3000.
+
+🧠 Estrutura do Projeto
+pgsql
+Copiar
+Editar
+chat-box-Furia/
+├── public/
+├── src/
+│   ├── components/
+│   │   └── ChatBot.jsx
+│   ├── data/
+│   │   └── furiaData.json
+│   ├── App.jsx
+│   └── index.js
+├── package.json
+└── README.md
+🧩 Exemplos de Palavras-chave
+Palavra-chave	Resposta Esperada
+jogadores	Lista de jogadores da FURIA
+curiosidades	Curiosidades sobre o time
+csgo	Informações relacionadas ao jogo
+notícias	Notícias recentes sobre a FURIA
+menu	Opções de menus disponíveis no chatbot
+
+📚 Objetivo do Projeto
+Este projeto foi desenvolvido com fins educacionais, com foco em:
+
+Praticar desenvolvimento com React e manipulação de dados em JSON
+
+Criar um chatbot interativo sem o uso de IA, mas baseado em lógica condicional
+
+Aplicar conceitos de componentes reutilizáveis
+
+👨‍💻 Autor
+Leonardo Antonio da Silva
+📍 Camaragibe, Pernambuco
+🎓 Estudante de Análise e Desenvolvimento de Sistemas – Faculdade Católica Imaculada Conceição do Recife
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
