@@ -121,6 +121,9 @@ Após iniciar o projeto no navegador (`http://localhost:5173`), você verá a in
 
 ---
 
+**Observação:**  
+Ficaram alguns requisitos de teste que fiz e não consegui remover completamente, como bibliotecas de teste, mas nada que afete o funcionamento do código. Eles não impactam a experiência do usuário ou o desempenho do chatbot
+
 **Dica:**  
 O chatbot foi programado com respostas personalizadas baseadas em palavras-chave relacionadas ao time FURIA de CS:GO, como nomes de jogadores, partidas e histórico do time.
 
