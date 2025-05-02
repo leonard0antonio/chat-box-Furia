@@ -2,7 +2,7 @@
 
 ![Chatbot FURIA](https://drive.google.com/uc?id=1m-JFUgSGYwNe35_7gmb4_kvCzxZVV59l)
 
-Este é um chatbot temático sobre o time brasileiro de CS:GO **FURIA Esports**, desenvolvido com o objetivo de simular interações com os fãs do time e oferecer informações sobre jogadores, partidas e curiosidades. É um projeto educacional com foco em React e estrutura de menus interativos.
+Este é um chatbot temático sobre o time brasileiro de CS:GO **FURIA Esports**, desenvolvido com o objetivo de simular interações com os fãs do time e oferecer informações sobre jogadores, partidas e curiosidades. É um projeto de um desafio tecnico da Furia
 
 ---
 
@@ -18,11 +18,13 @@ Este é um chatbot temático sobre o time brasileiro de CS:GO **FURIA Esports**,
 
 ## 🛠 Tecnologias Utilizadas
 
-- React  
-- HTML5 & CSS3  
-- JavaScript (ES6)  
-- JSON para armazenamento local dos dados  
-- Git e GitHub para controle de versão  
+- ⚛️ React (com JSX)
+- ⚡ Vite (para desenvolvimento rápido e build otimizado)
+- 📜 JavaScript ES6+
+- 🎨 HTML5 + CSS3
+- 🧩 JSON (para dados do chatbot)
+- 🧠 Hooks (useState, etc.)
+- 🌍 Git & GitHub
 
 ---
 
