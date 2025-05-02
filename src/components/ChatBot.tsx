@@ -79,21 +79,8 @@ if (isMatch(["ajuda", "menu", "opções", "help", "o que posso perguntar"])) {
 }
 
 
-  // Perguntas sobre história
-  if (isMatch([
-    "história", "historia", "fundação", "fundadores", "origem", "como surgiu",
-    "quem criou", "de onde veio", "quando começou", "história da furia", "sobre a furia"
-  ])) {
-    return (                        
-      "📚 A história da FURIA é incrível! Você pode perguntar sobre:\n\n" +
-      "1️⃣ Como tudo começou (*história origem*)\n" +
-      "2️⃣ Origem do nome (*história nome*)\n" +
-      "3️⃣ Expansão internacional (*história expansão*)"
-    );
-  }
-
   // Perguntas específicas sobre a história
-if (isMatch(["história origem", "historia origem"])) {
+if (isMatch(["história origem", "história Furia"])) {
   return "📖 *Como tudo começou*\n\nA FURIA foi fundada em 2017 por Jaime Pádua e André Akkari, com o intuito de levar a organização ao topo do cenário de esports.";
 }
   // Origem do nome
@@ -101,7 +88,7 @@ if (isMatch(["história nome", "historia nome"])) {
   return "📖 *Origem do nome FURIA*\n\nO nome 'FURIA' remete à força e paixão, características fundamentais da organização e do time. Representa a garra com que os jogadores enfrentam desafios.";
 }
   // Expansão internacional
-if (isMatch(["história expansão", "historia expansão"])) {
+if (isMatch(["expansção", "historia expansão"])) {
   return "📖 *Expansão internacional*\n\nA FURIA começou no Brasil, mas logo se expandiu para outros países. Sua presença no cenário internacional cresceu com vitórias em grandes torneios, incluindo o Major de CS:GO.";
 }
 
@@ -314,18 +301,29 @@ if (isMatch(["conhecer jogadores", "evento furia", "meet and greet", "encontro c
   );
   
   if (foundPlayer) {
-    const { name, role, since, bio, trophies = [], gear = {}, hltv } = foundPlayer;
+    const {
+      name,
+      role,
+      since,
+      bio,
+      trophies = [],
+      gear = {} as { sens?: number; dpi?: number },
+      hltv,
+    } = foundPlayer;
   
     const details = [
       `🧑‍💻 ${name}${role ? ` - ${role}` : ""}${since ? ` | Na FURIA desde ${since}` : ""}`,
       bio ? `📜 ${bio}` : "",
       trophies.length ? `🏆 Conquistas: ${trophies.join(", ")}` : "",
-      gear.sens && gear.dpi ? `🎮 Sens: ${gear.sens} | DPI: ${gear.dpi}` : "",
+      gear.sens !== undefined && gear.dpi !== undefined
+        ? `🎮 Sens: ${gear.sens} | DPI: ${gear.dpi}`
+        : "",
       hltv ? `🔗 Perfil: ${hltv}` : ""
     ];
   
     return details.filter(Boolean).join("\n");
   }
+  
 
   // Loja
   if (isMatch([
@@ -358,7 +356,7 @@ if (isMatch(["conhecer jogadores", "evento furia", "meet and greet", "encontro c
 
   // Títulos da FURIA
   if (isMatch([
-    "títulos", "conquistas", "quantos títulos", "quantas conquistas", "melhor conquista", "títulos importantes"
+    "títulos", "conquistas", "quantos títulos", "quantas conquistas","A FURIA já ganhou algum título importante?", "melhor conquista", "títulos importantes"
   ])) {
     return "🏆 A FURIA já conquistou diversos títulos importantes como a *DreamHack Open*, *ESL Pro League Americas* e outros! Você pode conferir detalhes no site oficial.";
   }
