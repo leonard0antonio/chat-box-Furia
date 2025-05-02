@@ -1,4 +1,3 @@
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -12,8 +11,8 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
     font-family: 'Inter', sans-serif;
-    background-color: #f0f0f0;
-    color: #222;
+    background-color: #0d0d0d; /* fundo mais dark para combinar com FURIA */
+    color: #e0e0e0;
     line-height: 1.6;
   }
 
@@ -22,8 +21,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     padding: 1rem;
     border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    background-color: #111111; /* fundo interno mais escuro */
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -42,21 +41,45 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
 
     &:hover {
-      color: #007bff;
+      color: #d946ef; /* fuchsia, para combinar */
     }
   }
 
   button {
-    background-color: #007bff;
+    background-color: #d946ef; /* fúcsia padrão FURIA */
     color: white;
     border: none;
     padding: 0.625rem 1.25rem;
-    border-radius: 4px;
+    border-radius: 9999px; /* botão bem arredondado */
+    font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #a21caf; /* roxo mais escuro no hover */
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:focus {
+      border-color: #d946ef;
+      background-color: #262626;
     }
   }
 
@@ -75,7 +98,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   nav {
-    background-color: #333;
+    background-color: #222;
     color: white;
     padding: 0.75rem;
     border-radius: 8px;
@@ -88,7 +111,7 @@ export const GlobalStyle = createGlobalStyle`
       color: white;
 
       &:hover {
-        color: #f4f4f4;
+        color: #d946ef;
       }
     }
 

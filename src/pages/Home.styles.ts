@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
@@ -14,13 +13,11 @@ export const HomeContainer = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 80px;
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-
+  width: 120px; /* Aumentei um pouco para dar mais destaque */
+  margin-bottom: 1rem; /* Espaço entre logo e título */
+  
   @media (min-width: 960px) {
-    width: 100px;
+    width: 140px;
   }
 `;
 

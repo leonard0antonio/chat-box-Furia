@@ -1,177 +1,408 @@
+
 import React, { useState } from "react";
 import news from "../assets/data/news.json";
-import match from "../assets/data/match.json";
-import players from "../assets/data/players.json";
+import matches from "../assets/data/matches.json";
+import players from "../assets/data/players.json";                                        
+
+
 
 interface Message {
   sender: "user" | "bot";
   text: string;
 }
 
-const ChatBot: React.FC = () => {
-  const initialMessage: Message = {
-    sender: "bot",
-    text:
-      "🔥 Fala, FURIOSO(A)! Bem-vindo ao canal direto com a FURIA!\n\n" +
-      "Aqui vai o que você pode perguntar:\n\n" +
-      "1️⃣ Últimas notícias da equipe\n" +
-      "2️⃣ Próximo jogo da FURIA\n" +
-      "3️⃣ Informações sobre jogadores (ex: *arT*, *KSCERATO*)\n" +
-      "4️⃣ Loja oficial da FURIA\n\n",
-  };
+const initialBotMessage: Message = {
+  sender: "bot",
+  text: "🖤💛 E AÍ, FURIOSO(A)! Tamo junto! Pergunta o que quiser sobre a FURIA ou digita *menu* pra ver tudo que posso te contar! 🎯 Bora fazer história? #DIADEFURIA",
+};
 
-  const [messages, setMessages] = useState<Message[]>([initialMessage]);
+
+  // Componente principal do ChatBot
+  const ChatBot: React.FC = () => {
+  const [messages, setMessages] = useState<Message[]>([initialBotMessage]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+
+  // Envia a mensagem do usuário e gera resposta do bot
   const handleSend = () => {
     if (!input.trim()) return;
 
-    const userMessage = { sender: "user", text: input };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
-
+    const newUserMessage: Message = { sender: "user", text: input };
+    const updatedMessages = [...messages, newUserMessage];
+    setMessages(updatedMessages);
     setIsLoading(true);
 
     setTimeout(() => {
-      const botResponse = getBotResponse(input.toLowerCase());
-      setMessages([...newMessages, { sender: "bot", text: botResponse }]);
+      const botReply = generateBotResponse(input.toLowerCase());
+      setMessages([...updatedMessages, { sender: "bot", text: botReply }]);
       setIsLoading(false);
     }, 500);
 
     setInput("");
   };
 
+  // Reseta o chat
   const handleClear = () => {
-    setMessages([initialMessage]);
+    setMessages([initialBotMessage]);
     setInput("");
   };
 
-  const getBotResponse = (msg: string): string => {
-    const lowerMsg = msg.toLowerCase();
+// Gera a resposta baseada na entrada do usuário
+const generateBotResponse = (msg: string): string => {
+  const isMatch = (terms: string[]) => terms.some(term => msg.includes(term));
 
+  // Perguntas sobre novidades e notícias
+  if (isMatch([
+    "novidade", "novidades", "notícia", "notícias", "news", "atualização", "atualizações",
+    "últimas", "última", "rola", "aconteceu", "o que tem de novo", "tem novidade", "tem algo novo"
+  ])) {
+    return news.map(n => `📰 ${n.title}`).join("\n");
+  }
+
+// Ajuda / Menu de opções
+if (isMatch(["ajuda", "menu", "opções", "help", "o que posso perguntar"])) {
+  return (
+    "🚀 O que você quer saber, FURIOSO(A)? Escolha uma das opções abaixo:\n" +
+    "• 📰 Últimas notícias da FURIA\n" +
+    "• 🕹️ Próximo jogo de *CS* e calendário completo\n" +
+    "• 🏅 Jogadores do time principal de *CS: arT, KSCERATO, yuurih...*\n" +
+    "• 📚 História da nossa tropa\n" +
+    "• 🏆 Conquistas e títulos pesados\n" +
+    "• 👕 Produtos oficiais\n" +
+    "• 🎮 Onde assistir aos jogos AO VIVO\n" +
+    "• 📸 Mídias: fotos, vídeos e wallpapers\n" +
+    "• 🎖️ Quem é o capitão do time de CS?\n" +
+    "• 🎂 Data de fundação da org\n\n" +
+    "🔥 Pergunte sem medo, a FURIA é nossa!"
+  );
+}
+
+
+  // Perguntas sobre história
+  if (isMatch([
+    "história", "historia", "fundação", "fundadores", "origem", "como surgiu",
+    "quem criou", "de onde veio", "quando começou", "história da furia", "sobre a furia"
+  ])) {
+    return (                        
+      "📚 A história da FURIA é incrível! Você pode perguntar sobre:\n\n" +
+      "1️⃣ Como tudo começou (*história origem*)\n" +
+      "2️⃣ Origem do nome (*história nome*)\n" +
+      "3️⃣ Expansão internacional (*história expansão*)"
+    );
+  }
+
+  // Perguntas específicas sobre a história
+if (isMatch(["história origem", "historia origem"])) {
+  return "📖 *Como tudo começou*\n\nA FURIA foi fundada em 2017 por Jaime Pádua e André Akkari, com o intuito de levar a organização ao topo do cenário de esports.";
+}
+  // Origem do nome
+if (isMatch(["história nome", "historia nome"])) {
+  return "📖 *Origem do nome FURIA*\n\nO nome 'FURIA' remete à força e paixão, características fundamentais da organização e do time. Representa a garra com que os jogadores enfrentam desafios.";
+}
+  // Expansão internacional
+if (isMatch(["história expansão", "historia expansão"])) {
+  return "📖 *Expansão internacional*\n\nA FURIA começou no Brasil, mas logo se expandiu para outros países. Sua presença no cenário internacional cresceu com vitórias em grandes torneios, incluindo o Major de CS:GO.";
+}
+
+  // Curiosidades gerais
+if (isMatch(["curiosidade", "sabia que", "fato", "interessante"])) {
+  return "🧠 Sabia que a FURIA foi a primeira organização brasileira a ter uma gaming house nos EUA?";
+}
+
+// Pergunta sobre posição no ranking
+if (isMatch(["ranking", "posição", "hltv", "colocação", "ranking atual"])) {
+  return "📊 A FURIA atualmente ocupa o TOP 20 no ranking da HLTV!\n🔗 https://www.hltv.org/ranking/teams";
+}
+
+// Pergunta sobre o treinador
+if (isMatch(["coach", "treinador", "quem é o coach", "quem treina"])) {
+  return "🎯 O treinador atual da FURIA é *guerri*.";
+}
+
+  // Estilo de jogo
+if (isMatch(["estilo de jogo", "tática", "jogam como", "são agressivos", "rusham muito", "como a furia joga"])) {
+  return (
+    "🎯 A FURIA é conhecida por seu estilo *ultra agressivo*, liderado por *arT*. " +
+    "Eles pressionam cedo, dominam espaços com granadas e jogam sempre no limite da estratégia. É pura adrenalina!"
+  );
+}
+
+  // Jogo histórico
+if (isMatch(["melhor jogo", "jogo histórico", "jogo inesquecível", "maior vitória", "partida mais marcante"])) {
+  return (
+    "🔥 Um dos jogos mais marcantes da FURIA foi contra a *Astralis* na *EPL Season 12*, " +
+    "onde mostraram domínio tático e espírito de equipe. Reassistir esse jogo é obrigatório!"
+  );
+}
+
+// Sobre jerseys antigas
+if (isMatch(["camisa antiga", "uniforme antigo", "jersey antiga", "primeiro uniforme"])) {
+  return (
+    "👕 A primeira jersey da FURIA era preta com detalhes em azul, bem diferente do estilo atual. " +
+    "Ela se tornou item de colecionador entre os fãs!"
+  );
+}
+
+  // FURIA streamers
+if (isMatch(["streamers", "criadores", "furia stream", "quem faz live", "conteúdo furia"])) {
+  return (
+    "📺 Além do time profissional, a FURIA tem criadores como *Gaules*, *Rato Borrachudo*, *Liminha* e outros apoiando o time. " +
+    "Lives e conteúdos rolam o tempo todo!"
+  );
+}
+
+  // Majors e grandes torneios
+if (isMatch(["major", "participou de major", "eventos grandes", "internacional", "furia em major"])) {
+  return (
+    "🌍 A FURIA já participou de diversos Majors, com destaque para o TOP 3 no *IEM Rio Major 2022*, " +
+    "com apoio insano da torcida brasileira!"
+  );
+}
+ // Perguntas sobre ex-jogadores
+if (isMatch(["ex jogadores", "quem já saiu", "quem passou pela furia", "ex integrentes", "antigos jogadores"])) {
+  return (
+    "📜 Ex-jogadores notáveis da FURIA incluem:\n" +
+    "• *VINI* (2017–2021)\n" +
+    "• *HEN1* (2020–2021)\n" +
+    "• *drop* (2021–2023)\n" +
+    "• *saffee* (2022–2023)\n\n" +
+    "Esses caras marcaram história e ajudaram a FURIA a chegar no topo!"
+  );
+}
+
+  // Perguntas sobre a FURIA no Brasil
+if (isMatch(["melhor time do brasil", "ranking brasil", "melhor time brasileiro", "furia é top1", "melhor time nacional"])) {
+  return (
+    "🇧🇷 A FURIA é considerada por muitos como o time brasileiro mais sólido dos últimos anos no cenário internacional!\n" +
+    "🟢 Constância, títulos e presença em majors colocam a tropa no topo do Brasil."
+  );
+
+}
+  // Perguntas sobre a FURIA no cenário internacional
+if (isMatch(["salário", "quanto ganham", "ganhos", "ganham bem", "estrutura furia", "investimento"])) {
+  return (
+    "💰 A FURIA oferece uma das melhores estruturas do Brasil, com centro de treinamento, coachs dedicados e suporte de alto nível. " +
+    "Os salários não são divulgados, mas sabe-se que os jogadores são bem valorizados!"
+  );
+}
+
+  // Perguntas sobre estatísticas e desempenho
+if (isMatch(["estatísticas", "stats", "desempenho", "kd", "taxa de vitórias", "melhor jogador furia"])) {
+  return (
+    "📈 Os destaques estatísticos da FURIA normalmente são *KSCERATO* e *yuurih*, com K/D altíssimo e impacto constante nas partidas. " +
+    "Acompanhe as estatísticas completas em: https://www.hltv.org/team/8297/furia"
+  );
+}
+
+ // Perguntas sobre o time feminino
+if (isMatch(["bootcamp", "viajaram", "onde estão", "treinamento fora", "viagem da furia"])) {
+  return (
+    "✈️ A FURIA frequentemente realiza bootcamps na Europa e nos EUA antes de torneios importantes, buscando adaptação e treinos contra os melhores do mundo."
+  );
+}
+
+  // Perguntas sobre a torcida
+if (isMatch(["torcida", "fãs", "fanbase", "apoiadores", "barulho da torcida", "como é a torcida da furia"])) {
+  return (
+    "📣 A torcida da FURIA é uma das mais apaixonadas do mundo!\n" +
+    "No *IEM Rio Major*, o grito de guerra 'FURIA, FURIA!' ecoou no mundo todo. Quem viu, sabe!"
+  );
+}
+
+  // Perguntas sobre a FURIA em outros jogos
+if (isMatch(["colab", "parceria", "quem patrocina", "quem apoia", "marcas da furia", "colaborações"])) {
+  return (
+    "🤝 A FURIA já fez parcerias com marcas como *Nike*, *Red Bull*, *Fusion*, *HyperX* e outras grandes empresas que apoiam o cenário gamer!"
+  );
+}
+
+  // Perguntas sobre a FURIA no cenário internacional
+if (isMatch(["meme", "piada", "furia é meme", "rush", "art é maluco"])) {
+  return (
+    "😂 Memes clássicos da FURIA CS:\n" +
+    "• 'RUSH B... não, espera, RUSH A!'\n" +
+    "• 'arT é doente!'\n" +
+    "• 'KSCERATO não erra'\n" +
+    "• 'FURIA STYLE: ou ganha ou perde feio'\n" +
+    "• 'A tropa do caos'\n\n" +
+    "🎮 A FURIA criou uma identidade única no cenário!"
+  );
+}
+
+ // Perguntas sobre a FURIA no Brasil
+if (isMatch(["onde fica a gh", "onde é a sede", "onde mora a furia", "onde eles treinam", "local da furia"])) {
+  return (
+    "📍 A FURIA tem sede nos *Estados Unidos* e também estrutura de alto nível no *Brasil*, com centro de treinamento e áreas de performance!\n" +
+    "A GH (gaming house) já passou por locais como *Miami* e *São Paulo*."
+  );
+}
   
-    if (
-      lowerMsg.includes("novidade") ||
-      lowerMsg.includes("notícia") ||
-      lowerMsg.includes("noticias") ||
-      lowerMsg.includes("novidades") ||
-      lowerMsg.includes("news") ||
-      lowerMsg.includes("atualização") ||
-      lowerMsg.includes("atualizações") ||
-      lowerMsg.includes("últimas") ||
-      lowerMsg.includes("ultimas") ||
-      lowerMsg.includes("fatos") ||
-      lowerMsg.includes("aconteceu") ||
-      lowerMsg.includes("rola") ||
-      lowerMsg.includes("tá rolando") ||
-      lowerMsg.includes("ta rolando") ||
-      lowerMsg.includes("denovida") || 
-      lowerMsg.includes("de novidade")
-    ) {
-      return news.map((n) => `📰 ${n.title}`).join("\n");
-    }
+  // Perguntas sobre a FURIA no Brasil
+if (isMatch(["mudança no elenco", "saiu alguém", "entrou alguém", "última mudança", "nova lineup", "atualização do time"])) {
+  return (
+    "🔄 A FURIA está sempre em evolução!\n" +
+    "Você pode conferir a lineup atualizada e alterações recentes em: https://www.hltv.org/team/8297/furia"
+  );
+}
 
+  // Perguntas sobre o nome FURIA
+if (isMatch(["por que furia", "significado do nome", "de onde vem o nome furia", "nome da furia", "furia significa"])) {
+  return (
+    "🧬 O nome *FURIA* representa intensidade, garra e paixão.\n" +
+    "Foi escolhido para refletir o espírito combativo da equipe dentro e fora dos servidores!"
+  );
+}
+
+  // Perguntas sobre a FURIA e a comunidade
+if (isMatch(["projetos sociais", "apoio a educação", "a furia ajuda jovens", "iniciativas sociais", "furia e educação"])) {
+  return (
+    "🎓 A FURIA apoia o desenvolvimento social por meio de projetos educacionais, culturais e de inclusão, especialmente no Brasil.\n" +
+    "Eles acreditam no poder do esporte eletrônico para transformar vidas!"
+  );
+}
+
+  // Perguntas sobre a mascote
+if (isMatch(["mascote", "símbolo", "logo da furia", "pantera", "animal da furia", "o que é o símbolo"])) {
+  return (
+    "🐾 A pantera é o símbolo da FURIA — representando agilidade, força e astúcia.\n" +
+    "A logo imponente virou ícone no cenário global do CS:GO!"
+  );
+}
+
+  // Perguntas sobre o conteúdo exclusivo
+if (isMatch(["documentário", "documentarios", "conteúdo exclusivo", "história da furia em vídeo", "vídeos especiais"])) {
+  return (
+    "🎥 A FURIA tem conteúdos incríveis como documentários e bastidores no YouTube!\n" +
+    "Dá uma olhada: https://www.youtube.com/@FURIA"
+  );
+}
+
+  // Perguntas sobre o evento presencial
+if (isMatch(["conhecer jogadores", "evento furia", "meet and greet", "encontro com fãs", "evento presencial"])) {
+  return (
+    "🤝 A FURIA costuma organizar eventos presenciais e participações em campeonatos no Brasil e no exterior!\n" +
+    "Fica de olho nas redes sociais oficiais pra não perder a chance de conhecer os brabos!"
+  );
+}
+
+
+  // Perguntas sobre jogos
+  if (isMatch([
+    "jogo", "jogos", "partida", "partidas", "match", "matches",
+    "calendário", "agenda", "quando joga", "próximo jogo", "proximo jogo", "tem jogo hoje",
+    "data do jogo", "quando é o jogo", "horário do jogo", "próximos jogos"
+  ])) {
+    if (matches.length === 0) return "🎮 Nenhuma partida de CS da FURIA está agendada no momento.";
+    return matches.map(
+      (m, i) => `${i + 1}. ${m.opponent} - ${m.date} às ${m.time}\n🔗 ${m.link}`
+    ).join("\n\n");
+  }
   
-    if (
-      lowerMsg.includes("jogo") ||
-      lowerMsg.includes("jogos") ||
-      lowerMsg.includes("partida") ||
-      lowerMsg.includes("partidas") ||
-      lowerMsg.includes("match") ||
-      lowerMsg.includes("próximo jogo") ||
-      lowerMsg.includes("proximo jogo") ||
-      lowerMsg.includes("quando joga") ||
-      lowerMsg.includes("quando é o jogo") ||
-      lowerMsg.includes("quando vai jogar") ||
-      lowerMsg.includes("calendário") ||
-      lowerMsg.includes("agenda") ||
-      lowerMsg.includes("data do jogo") ||
-      lowerMsg.includes("horário do jogo") ||
-      lowerMsg.includes("jga") || 
-      lowerMsg.includes("jg")    
-    ) {
-      if (match.length === 0) return "🎮 Nenhuma partida agendada no momento.";
+  
+  // Perguntas sobre jogadores
+  if (isMatch([
+    "jogador", "jogadores", "player", "players", "atletas", "integrantes", 
+    "quem joga", "quem são os jogadores", "quem é"
+  ])) {
+    return "🤔 Pergunte sobre jogadores específicos, como *KSCERATO*, *yuurih* e outros.";
+  }
+  
+  // Verifica se há menção a algum jogador específico
+  const foundPlayer = players.find(p =>
+    msg.toLowerCase().includes(p.name.toLowerCase())
+  );
+  
+  if (foundPlayer) {
+    const { name, role, since, bio, trophies = [], gear = {}, hltv } = foundPlayer;
+  
+    const details = [
+      `🧑‍💻 ${name}${role ? ` - ${role}` : ""}${since ? ` | Na FURIA desde ${since}` : ""}`,
+      bio ? `📜 ${bio}` : "",
+      trophies.length ? `🏆 Conquistas: ${trophies.join(", ")}` : "",
+      gear.sens && gear.dpi ? `🎮 Sens: ${gear.sens} | DPI: ${gear.dpi}` : "",
+      hltv ? `🔗 Perfil: ${hltv}` : ""
+    ];
+  
+    return details.filter(Boolean).join("\n");
+  }
 
-      return match
-        .map(
-          (m, i) =>
-            `${i + 1}. ${m.opponent} - ${m.date} às ${m.time}\n🔗 Detalhes: ${m.link}` 
-        )
-        .join("\n\n");
-    }
+  // Loja
+  if (isMatch([
+    "loja", "camisa", "camisas", "merch", "comprar", "uniforme", "roupa", "produtos"
+  ])) {
+    return "🛍️ Nova Jersey FURIA 2025 já disponível!\n👉 https://furia.gg/loja";
+  }
 
-   // Resposta para jogadores
-    if (
-      lowerMsg.includes("jogador") ||
-      lowerMsg.includes("jogadores") ||
-      lowerMsg.includes("player") ||
-      lowerMsg.includes("players") ||
-      lowerMsg.includes("quem é") ||
-      lowerMsg.includes("quem são") ||
-      lowerMsg.includes("quem é o jogador") ||
-      lowerMsg.includes("quem são os jogadores") ||
-      lowerMsg.includes("informações sobre jogador") ||
-      lowerMsg.includes("informações sobre jogadores")
-    ) {
-      return "🤔 Você pode perguntar sobre jogadores específicos, como *arT*, *KSCERATO*, *yuurih* e outros.";
-    }
+  // Conteúdo de fotos, vídeos e mídias
+  if (isMatch([
+    "fotos", "imagens", "vídeos", "conteúdo", "mídia", "galeria", "foto", "vídeo",
+    "wallpaper", "papel de parede", "wallpapers"
+  ])) {
+    return "📸 Veja fotos, vídeos e wallpapers oficiais no Instagram e Twitter!\n👉 https://instagram.com/furiagg";
+  }
 
-    // Resposta para jogadores específicos
-    const player = players.find((p) => msg.includes(p.name.toLowerCase()));
+  // Assistir jogos ao vivo
+  if (isMatch([
+    "assistir", "ao vivo", "live", "transmissão", "ver jogo", "onde assistir", "link do jogo"
+  ])) {
+    return "📺 Assista aos jogos da FURIA ao vivo em: https://twitch.tv/furiagg ou https://youtube.com/furiagg";
+  }
 
-    if (player) {
-      const {
-        name = "",
-        role = "",
-        since = "",
-        bio = "",
-        trophies = [],
-        gear: { sens = "", dpi = "" } = {},
-        hltv = "",
-      } = player;
+  // Capitão da equipe
+  if (isMatch([
+    "capitão", "quem é o capitão", "líder", "quem lidera", "quem comanda"
+  ])) {
+    return "🎖️ O capitão da equipe principal de CS:GO da FURIA é o *arT*!";
+  }
 
-      return `🧑‍💻 ${name || "Jogador desconhecido"}${role ? ` é ${role}` : ""}${
-        since ? ` da FURIA desde ${since}` : ""
-      }.${bio ? ` ${bio}` : ""}\n` +
-        `${trophies.length ? `🏆 ${trophies.join(", ")}` : ""}\n` +
-        `${sens || dpi ? `🎮 Sens: ${sens} | DPI: ${dpi}` : ""}\n` +
-        `${hltv ? `🔗 ${hltv}` : ""}`.trim();
-    }
+  // Títulos da FURIA
+  if (isMatch([
+    "títulos", "conquistas", "quantos títulos", "quantas conquistas", "melhor conquista", "títulos importantes"
+  ])) {
+    return "🏆 A FURIA já conquistou diversos títulos importantes como a *DreamHack Open*, *ESL Pro League Americas* e outros! Você pode conferir detalhes no site oficial.";
+  }
 
-    // Resposta para conteúdo da FURIA (fotos, vídeos, etc)
-    if (lowerMsg.includes("fotos") || lowerMsg.includes("imagens") || lowerMsg.includes("vídeos") || lowerMsg.includes("conteúdo")) {
-      return "📸 Confira nosso conteúdo exclusivo no Instagram e Twitter!";
-    }
+  // Data de fundação
+  if (isMatch([
+    "data de fundação", "fundação", "quando foi fundada", "que ano começou"
+  ])) {
+    return "🎂 A FURIA foi fundada em *2017* por *Jaime Pádua* e *André Akkari*.";
+  }
 
-    // Resposta para loja
-    if (lowerMsg.includes("loja") || lowerMsg.includes("camisa") || lowerMsg.includes("merch")) {
-      return `🛍️ Nova Jersey FURIA 2025 já disponível!\n👉 https://furia.gg/loja`;
-    }
-   
-    //fallback
-    if (lowerMsg.includes("oi") || lowerMsg.includes("olá") || lowerMsg.includes("e aí") || lowerMsg.includes("fala")) {
-      return "👋 Olá! Como posso ajudar você hoje?";
-    }
-    if (lowerMsg.includes("tchau") || lowerMsg.includes("até logo") || lowerMsg.includes("adeus")) {
-      return "👋 Até mais! Volte sempre!";
-    }
-    if (lowerMsg.includes("obrigado") || lowerMsg.includes("valeu") || lowerMsg.includes("agradeço")) {
-      return "🙏 De nada! Estou aqui para ajudar! Se precisar de mais alguma coisa, é só chamar.";
-    }
+  // Saudações
+  if (isMatch(["oi", "olá", "ola", "e aí", "fala", "opa", "salve", "bom dia", "boa tarde", "boa noite"])) {
+    return "👊 Fala, FURIOSO(A)! Pronto(a) pra saber tudo sobre a tropa? Manda tua pergunta aí! 🔥";
+  }
 
-    // Resposta padrão para perguntas não reconhecidas
-    return "😅 Ainda não entendi essa... Tenta perguntar sobre notícias, jogadores, loja ou próximo jogo.";
-  };
-    // Função para verificar se a mensagem é uma lista
+  // Despedidas
+  if (isMatch([
+    "tchau", "até logo", "adeus", "valeu", "flw", "até mais", "até breve"
+  ])) {
+    return "👋 Até mais! Volte sempre!";
+  }
+
+  // Agradecimentos
+  if (isMatch([
+    "obrigado", "valeu", "agradeço", "grato", "obrigadão", "thanks", "vlw"
+  ])) {
+    return "🙏 De nada! Qualquer coisa, estou por aqui.";
+  }
+
+  // Se não entender
+  return "😅 Não consegui entender sua pergunta... Mas não se preocupe! Tente perguntar sobre as últimas notícias, os jogadores, a loja ou os próximos jogos. Se precisar de ajuda, é só falar 'ajuda' para ver as opções do menu!";
+
+};
+
+  // Verifica se a mensagem deve ser renderizada como lista
   const isListMessage = (text: string): boolean => {
     const knownPrefixes = ["📰", "🎮", "🏆", "1️⃣", "2️⃣", "3️⃣", "4️⃣"];
     const lines = text.split("\n").filter(Boolean);
-    return lines.length > 1 && lines.every((line) =>
-      knownPrefixes.some((prefix) => line.trim().startsWith(prefix))
+    return lines.length > 1 && lines.every(line =>
+      knownPrefixes.some(prefix => line.trim().startsWith(prefix))
     );
   };
-    // Renderização do componente
+
   return (
     <div className="max-w-md mx-auto p-4 bg-zinc-900 text-white rounded-2xl shadow-lg h-[600px] flex flex-col">
       <div className="flex-1 overflow-y-auto space-y-2 mb-4 px-2">
@@ -193,9 +424,11 @@ const ChatBot: React.FC = () => {
             )}
           </div>
         ))}
-        {isLoading && <div className="p-2 text-center text-gray-400">🤖 Pensando...</div>}
+        {isLoading && (
+          <div className="p-2 text-center text-gray-400">🤖 Pensando...</div>
+        )}
       </div>
-          
+
       <div className="flex gap-2">
         <input
           type="text"
