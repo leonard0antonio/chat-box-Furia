@@ -45,17 +45,15 @@ Este projeto representa uma iniciativa para explorar e aplicar conhecimentos em 
 - **SWC:**  
   Compilador super-rápido escrito em Rust, utilizado para transpilar o código JavaScript/TypeScript.
 
----
 
-## Capturas de Tela do Projeto
+-----
 
-Uma captura de tela do projeto está disponível no seguinte link:
+## 📷 Demonstração
 
-📷 [Visualizar Imagem](https://drive.google.com/file/d/1m-JFUgSGYwNe35_7gmb4_kvCzxZVV59l/view?usp=sharing)
 
-A imagem mostra a interface de chat desenvolvida, destacando a área de mensagens e os elementos de interação do usuário.
+![Demo da aplicação](demo01.gif)
 
----
+-----
 
 ## Lições Aprendidas
 
